@@ -84,8 +84,6 @@
     </table>
 </form:form>
 
-<a>sdfsfkjsdgd</a>
-
 <c:if test="${!empty procurementGoods}">
     <table class="data" border="1">
         <tr>

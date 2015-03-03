@@ -1,12 +1,14 @@
 package com.springapp.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by bkv on 24/02/15.
  */
 @Entity
-public class ProcurementGood {
+@Table(name = "ProcurementGood")
+public class ProcurementGood implements Serializable{
     private int id;
     private Integer procurement;
     private Float goodQuantity;

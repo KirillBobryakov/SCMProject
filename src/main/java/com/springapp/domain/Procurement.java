@@ -8,6 +8,7 @@ import java.util.Collection;
  * Created by bkv on 20/02/15.
  */
 @Entity
+@Table(name = "Procurement")
 public class Procurement implements Serializable{
     private Integer id;
     private String nameText;

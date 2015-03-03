@@ -1,13 +1,15 @@
 package com.springapp.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
 /**
  * Created by bkv on 17/02/15.
  */
 @Entity
-public class Company {
+@Table(name = "Company")
+public class Company implements Serializable{
     private int id;
     private String nameRu;
     private String nameFr;
@@ -17,6 +19,8 @@ public class Company {
     private Collection<Procurement> procurementsById;
     private Collection<Procurement> procurementsById_0;
     private Collection<ProcurementGood> procurementGoodsById;
+    private Integer type;
+    private CompanyType companyTypeByType;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -117,5 +121,25 @@ public class Company {
 
     public void setProcurementGoodsById(Collection<ProcurementGood> procurementGoodsById) {
         this.procurementGoodsById = procurementGoodsById;
+    }
+
+    @Basic
+    @Column(name = "type", nullable = true, insertable = true, updatable = true)
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "type", referencedColumnName = "id")
+    public CompanyType getCompanyTypeByType() {
+        return companyTypeByType;
+    }
+
+    public void setCompanyTypeByType(CompanyType companyTypeByType) {
+        this.companyTypeByType = companyTypeByType;
     }
 }

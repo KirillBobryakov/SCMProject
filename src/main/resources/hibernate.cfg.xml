@@ -14,6 +14,7 @@
         <mapping class="com.springapp.domain.Company"/>
         <mapping class="com.springapp.domain.Procurement"/>
         <mapping class="com.springapp.domain.ProcurementGood"/>
+        <mapping class="com.springapp.domain.CompanyType"/>
 
         <!--property name="connection.url">jdbc:mysql://localhost:3306/scmweb_db</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>

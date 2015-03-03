@@ -1,6 +1,7 @@
 package com.springapp.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
 /**
@@ -8,7 +9,7 @@ import java.util.Collection;
  */
 @Entity
 @Table(name = "Address")
-public class Address {
+public class Address implements Serializable{
 
     private int id;
     private String postalCode;

@@ -1,13 +1,15 @@
 package com.springapp.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 
 /**
  * Created by bkv on 17/02/15.
  */
 @Entity
-public class Country {
+@Table(name = "Country")
+public class Country implements Serializable{
     private int id;
     private String codeA2;
     private String name;

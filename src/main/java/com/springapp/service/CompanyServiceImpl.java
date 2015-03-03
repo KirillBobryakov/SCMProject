@@ -28,8 +28,8 @@ public class CompanyServiceImpl implements CompanyService {
 
 
     @Transactional
-    public List<Company> listCompanies(Integer companyType) {
-        return null;
+    public List<Company> listCompaniesByTypeId(Integer companyTypeId) {
+        return companyDAO.listCompaniesByTypeId(companyTypeId);
     }
 
     @Transactional

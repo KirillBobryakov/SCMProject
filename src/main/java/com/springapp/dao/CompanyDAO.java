@@ -13,6 +13,7 @@ public interface CompanyDAO {
     public void addCompany(Company company);
     public List<Company> listCompanies();
 
+    public List<Company> listCompaniesByTypeId(Integer companyTypeId);
 
 
 }

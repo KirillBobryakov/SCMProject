@@ -3,6 +3,7 @@ package com.springapp.dao;
 import com.springapp.domain.Address;
 import com.springapp.domain.Company;
 import com.springapp.domain.Country;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,5 +29,14 @@ public class CompanyDAOImpl implements CompanyDAO {
     @Override
     public void addCompany(Company company) {
         sessionFactory.getCurrentSession().save(company);
+    }
+
+    @Override
+    public List<Company> listCompaniesByTypeId(Integer companyTypeId) {
+        Query query = sessionFactory.getCurrentSession().createQuery(
+                "from Company company where company.type = :companyTypeId");
+        query.setParameter("companyTypeId", companyTypeId);
+
+        return query.list();
     }
 }

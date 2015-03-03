@@ -25,6 +25,21 @@ public class ProcurementDAOImpl implements ProcurementDAO {
         sessionFactory.getCurrentSession().save(procurement);
     }
 
+    @Override
+    public void updateProcurement(Procurement procurement) {
+        Query query = sessionFactory.getCurrentSession().createQuery(
+                "UPDATE Procurement SET nameText = :nameText, nameNum = :nameNum, " +
+                        "seller = :seller, consignor = :consignor WHERE id = :procurementId");
+        query.setParameter("nameText", procurement.getNameText());
+        query.setParameter("nameNum", procurement.getNameNum());
+        query.setParameter("seller", procurement.getSeller());
+        query.setParameter("consignor", procurement.getConsignor());
+        query.setInteger("procurementId", procurement.getId());
+
+        int result = query.executeUpdate();
+        System.out.println("Procurement update status="+result);
+    }
+
     @SuppressWarnings("unchecked")
     public List<Procurement> listProcurements() {
         return sessionFactory.getCurrentSession().createQuery("from Procurement ").list();

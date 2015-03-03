@@ -13,17 +13,20 @@ public class ProcurementGood implements Serializable{
     private Integer procurement;
     private Float goodQuantity;
     private Float unitPrice;
+    private Integer unitPriceCurrency;
     private Float discountAbsolute;
     private Float discountPercent;
     private Integer producer;
     private Procurement procurementByProcurement;
     private Company companyByProducer;
+    private Currency currencyByUnitPriceCurrency;
 
     @Id
     @Column(name = "id")
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -33,6 +36,7 @@ public class ProcurementGood implements Serializable{
     public Integer getProcurement() {
         return procurement;
     }
+
     public void setProcurement(Integer procurement) {
         this.procurement = procurement;
     }
@@ -42,6 +46,7 @@ public class ProcurementGood implements Serializable{
     public Float getGoodQuantity() {
         return goodQuantity;
     }
+
     public void setGoodQuantity(Float goodQuantity) {
         this.goodQuantity = goodQuantity;
     }
@@ -51,6 +56,7 @@ public class ProcurementGood implements Serializable{
     public Float getUnitPrice() {
         return unitPrice;
     }
+
     public void setUnitPrice(Float unitPrice) {
         this.unitPrice = unitPrice;
     }
@@ -60,6 +66,7 @@ public class ProcurementGood implements Serializable{
     public Float getDiscountAbsolute() {
         return discountAbsolute;
     }
+
     public void setDiscountAbsolute(Float discountAbsolute) {
         this.discountAbsolute = discountAbsolute;
     }
@@ -69,6 +76,7 @@ public class ProcurementGood implements Serializable{
     public Float getDiscountPercent() {
         return discountPercent;
     }
+
     public void setDiscountPercent(Float discountPercent) {
         this.discountPercent = discountPercent;
     }
@@ -78,6 +86,7 @@ public class ProcurementGood implements Serializable{
     public Integer getProducer() {
         return producer;
     }
+
     public void setProducer(Integer producer) {
         this.producer = producer;
     }
@@ -119,6 +128,7 @@ public class ProcurementGood implements Serializable{
     public Procurement getProcurementByProcurement() {
         return procurementByProcurement;
     }
+
     public void setProcurementByProcurement(Procurement procurementByProcurement) {
         this.procurementByProcurement = procurementByProcurement;
     }
@@ -128,7 +138,26 @@ public class ProcurementGood implements Serializable{
     public Company getCompanyByProducer() {
         return companyByProducer;
     }
+
     public void setCompanyByProducer(Company companyByProducer) {
         this.companyByProducer = companyByProducer;
+    }
+
+    @Basic
+    @Column(name = "unitPriceCurrency", nullable = true, insertable = false, updatable = false)
+    public Integer getUnitPriceCurrency() {
+        return unitPriceCurrency;
+    }
+    public void setUnitPriceCurrency(Integer unitPriceCurrency) {
+        this.unitPriceCurrency = unitPriceCurrency;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "unitPriceCurrency", referencedColumnName = "id")
+    public Currency getCurrencyByUnitPriceCurrency() {
+        return currencyByUnitPriceCurrency;
+    }
+    public void setCurrencyByUnitPriceCurrency(Currency currencyByUnitPriceCurrency) {
+        this.currencyByUnitPriceCurrency = currencyByUnitPriceCurrency;
     }
 }

@@ -1087,15 +1087,23 @@
       <column name="placeDimensionH" sqlType="FLOAT" precision="12" scale="0" nullable="true" jdbcType="7"/>
       <column name="placePackingInfo" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="fk_goodsUnitQualifier" columns="goodsUnitQualifier" ref-table="UnitQualifier" ref-schema="" ref-catalog="scmweb_db" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="fk_placePackingInfo" columns="placePackingInfo" ref-table="PackingInfo" ref-schema="" ref-catalog="scmweb_db" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
-      <foreign-key name="fk_placeVolumeUnitQualifier" columns="placeVolumeUnitQualifier" ref-table="UnitQualifier" ref-schema="" ref-catalog="scmweb_db" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_goodsUnitQualifier" columns="goodsUnitQualifier" ref-table="unitqualifier" ref-schema="" ref-catalog="scmweb_db" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_placePackingInfo" columns="placePackingInfo" ref-table="packinginfo" ref-schema="" ref-catalog="scmweb_db" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_placeVolumeUnitQualifier" columns="placeVolumeUnitQualifier" ref-table="unitqualifier" ref-schema="" ref-catalog="scmweb_db" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="fk_tnvedCode" columns="tnvedCode" ref-table="TnvedCode" ref-schema="" ref-catalog="scmweb_db" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="fk_ProcGoodGood" table="ProcurementGood" schema="" catalog="scmweb_db" columns="good"/>
       <index name="fk_goodsUnitQualifier_idx" unique="false" columns="goodsUnitQualifier"/>
       <index name="fk_placePackingInfo_idx" unique="false" columns="placePackingInfo"/>
       <index name="fk_placeVolumeUnitQualifier_idx" unique="false" columns="placeVolumeUnitQualifier"/>
       <index name="fk_tnvedCode_idx" unique="false" columns="tnvedCode"/>
+    </table>
+    <table name="PackingInfo" schema="" catalog="scmweb_db" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="code" sqlType="VARCHAR" precision="2" scale="0" nullable="false" jdbcType="12"/>
+      <column name="descriptionRu" sqlType="VARCHAR" precision="150" scale="0" nullable="false" jdbcType="12"/>
+      <column name="descriptionFr" sqlType="VARCHAR" precision="150" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="fk_placePackingInfo" table="Good" schema="" catalog="scmweb_db" columns="placePackingInfo"/>
     </table>
     <table name="PriorOrder" schema="" catalog="scmweb_db" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
@@ -1176,6 +1184,15 @@
       <exported-key name="fk_tnvedCode" table="Good" schema="" catalog="scmweb_db" columns="tnvedCode"/>
       <index name="fk_importDutyWeightCurrency_idx" unique="false" columns="importDutyWeightCurrency"/>
     </table>
+    <table name="UnitQualifier" schema="" catalog="scmweb_db" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="code" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="fk_goodsUnitQualifier" table="Good" schema="" catalog="scmweb_db" columns="goodsUnitQualifier"/>
+      <exported-key name="fk_placeVolumeUnitQualifier" table="Good" schema="" catalog="scmweb_db" columns="placeVolumeUnitQualifier"/>
+    </table>
     <table name="Users" schema="" catalog="scmweb_db" type="TABLE">
       <column name="id" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="enabled" sqlType="BIT" precision="1" scale="0" nullable="true" jdbcType="-7"/>
@@ -1228,27 +1245,10 @@
       <primary-key name="PRIMARY" columns="idorganization"/>
       <index name="unique_organizationName" unique="true" columns="organizationName"/>
     </table>
-    <table name="packingInfo" schema="" catalog="scmweb_db" type="TABLE">
-      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="code" sqlType="VARCHAR" precision="2" scale="0" nullable="false" jdbcType="12"/>
-      <column name="descriptionRu" sqlType="VARCHAR" precision="150" scale="0" nullable="false" jdbcType="12"/>
-      <column name="descriptionFr" sqlType="VARCHAR" precision="150" scale="0" nullable="false" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <exported-key name="fk_placePackingInfo" table="Good" schema="" catalog="scmweb_db" columns="placePackingInfo"/>
-    </table>
     <table name="priorCalculation" schema="" catalog="scmweb_db" type="TABLE">
       <column name="idpriorCalculation" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="priorCalculationcol" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="idpriorCalculation"/>
-    </table>
-    <table name="unitQualifier" schema="" catalog="scmweb_db" type="TABLE">
-      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="code" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <column name="name" sqlType="VARCHAR" precision="50" scale="0" nullable="false" jdbcType="12"/>
-      <column name="description" sqlType="VARCHAR" precision="100" scale="0" nullable="true" jdbcType="12"/>
-      <primary-key name="PRIMARY" columns="id"/>
-      <exported-key name="fk_goodsUnitQualifier" table="Good" schema="" catalog="scmweb_db" columns="goodsUnitQualifier"/>
-      <exported-key name="fk_placeVolumeUnitQualifier" table="Good" schema="" catalog="scmweb_db" columns="placeVolumeUnitQualifier"/>
     </table>
     <table name="user" schema="" catalog="scmweb_db" type="TABLE">
       <column name="iduser" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>

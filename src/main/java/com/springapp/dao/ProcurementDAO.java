@@ -11,6 +11,8 @@ public interface ProcurementDAO {
 
     public void addProcurement(Procurement procurement);
 
+    public void updateProcurement(Procurement procurement);
+
     public List<Procurement> listProcurements();
 
     public void removeProcurement(Integer id);

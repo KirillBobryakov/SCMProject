@@ -21,8 +21,11 @@ public class ProcurementServiceImpl implements ProcurementService {
 
     @Transactional
     public void addProcurement(Procurement procurement) {
-        procurementDAO.addProcurement(procurement);
-
+        if(procurementDAO.getProcurementById(procurement.getId()) != null) {
+            procurementDAO.updateProcurement(procurement);
+        } else {
+            procurementDAO.addProcurement(procurement);
+        }
     }
 
     @Transactional

@@ -65,7 +65,7 @@ public class ProcurementController {
     public String addCompany(@ModelAttribute("procurement") Procurement procurement, BindingResult result) {
         procurementService.addProcurement(procurement);
 
-        return "redirect:/procurement/edit?procurementId="+procurement.getId();
+        return "redirect:/procurement/edit/"+procurement.getId();
     }
 
     @RequestMapping("/procurement/delete/{procurementId}")

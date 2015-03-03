@@ -27,6 +27,16 @@
     <table border="1">
         <tr>
             <td>
+                <form:label path="id">
+                    ID
+                </form:label>
+            </td>
+            <td>
+                <form:input path="id" disabled="true"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 <form:label path="nameText">
                     nameText
                 </form:label>

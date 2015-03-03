@@ -26,6 +26,12 @@ public class CompanyServiceImpl implements CompanyService {
         return companyDAO.listCompanies();
     }
 
+
+    @Transactional
+    public List<Company> listCompanies(Integer companyType) {
+        return null;
+    }
+
     @Transactional
     public void addCompany(Company company) {
         company.setAddressByAddress(addressDAO.getAddressById(company.getAddress()));

@@ -9,6 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>TITLE</title>
 </head>
+
 <body>
 
 <a href="<c:url value="/logout" />">
@@ -17,24 +18,13 @@
 
 <h2>PROCUREMENT EDIT</h2>
 
-<table>
-    <tr>
-        <td>
-            <label>NameText</label>
-        </td>
-        <td>
-            <input value="">
-        </td>
-    </tr>
-</table>
-
-<form:form method="post" action="/procurement/">
+<form:form method="post" action="/procurement/list">
     <input type="submit" value="BACK"/>
 </form:form>
 
 <form:form method="post" action="/procurement/create" commandName="procurement">
 
-    <table>
+    <table border="1">
         <tr>
             <td>
                 <form:label path="nameText">
@@ -61,7 +51,7 @@
             <td>
                 <form:select path="seller" >
                     <form:option title="none" value=""/>
-                    <form:options itemLabel="nameFr" itemValue="id" items="${companies}" />
+                    <form:options itemLabel="nameFr" itemValue="id" items="${foreign_companies}" />
                 </form:select>
             </td>
         </tr>
@@ -72,14 +62,14 @@
             <td>
                 <form:select path="consignor" >
                     <form:option title="none" value=""/>
-                    <form:options itemLabel="nameFr" itemValue="id" items="${companies}" />
+                    <form:options itemLabel="nameFr" itemValue="id" items="${foreign_companies}" />
                 </form:select>
             </td>
         </tr>
         <tr>
         <tr>
             <td colspan="2"><input type="submit"
-                                   value="NEW Procurement" /></td>
+                                   value="Commit" /></td>
         </tr>
     </table>
 </form:form>

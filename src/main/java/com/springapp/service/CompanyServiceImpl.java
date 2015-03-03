@@ -37,4 +37,17 @@ public class CompanyServiceImpl implements CompanyService {
         company.setAddressByAddress(addressDAO.getAddressById(company.getAddress()));
         companyDAO.addCompany(company);
     }
+
+    @Transactional
+    public List<Company> listCompaniesByType(String companyType) {
+        if(CompanyTypeService.IMPORTER.equals(companyType)){
+            return listCompaniesByTypeId(1);
+        } else if(CompanyTypeService.FOREIGN.equals(companyType)){
+            return listCompaniesByTypeId(2);
+        } else if(CompanyTypeService.TRANSPORT.equals(companyType)){
+            return listCompaniesByTypeId(3);
+        } else if(CompanyTypeService.CUSTOM_SERVICE.equals(companyType)){
+            return listCompaniesByTypeId(4);
+        } else return null;
+    }
 }

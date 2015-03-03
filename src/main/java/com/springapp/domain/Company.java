@@ -124,11 +124,10 @@ public class Company implements Serializable{
     }
 
     @Basic
-    @Column(name = "type", nullable = true, insertable = true, updatable = true)
+    @Column(name = "type", nullable = true, insertable = false, updatable = false)
     public Integer getType() {
         return type;
     }
-
     public void setType(Integer type) {
         this.type = type;
     }
@@ -138,7 +137,6 @@ public class Company implements Serializable{
     public CompanyType getCompanyTypeByType() {
         return companyTypeByType;
     }
-
     public void setCompanyTypeByType(CompanyType companyTypeByType) {
         this.companyTypeByType = companyTypeByType;
     }

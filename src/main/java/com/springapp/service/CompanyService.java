@@ -13,6 +13,9 @@ public interface CompanyService {
 
     public List<Company> listCompaniesByTypeId(Integer companyTypeId);
 
+    public List<Company> listCompaniesByType(String companyType);
+
+
     public void addCompany(Company company);
 
 }

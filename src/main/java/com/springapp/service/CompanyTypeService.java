@@ -10,6 +10,11 @@ import java.util.List;
  */
 public interface CompanyTypeService {
 
+    public static String IMPORTER = "IMPORTER";
+    public static String FOREIGN = "FOREIGN";
+    public static String TRANSPORT = "TRANSPORT";
+    public static String CUSTOM_SERVICE = "CUSTOM_SERVICE";
+
     public List<CompanyType> listCompanyTypes();
 
     public CompanyType getCompanyTypeById(Integer id);

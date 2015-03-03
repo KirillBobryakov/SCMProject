@@ -3,19 +3,15 @@ package com.springapp.web;
 import com.springapp.domain.Company;
 import com.springapp.domain.Country;
 import com.springapp.domain.Procurement;
-import com.springapp.service.AddressService;
-import com.springapp.service.CompanyService;
-import com.springapp.service.ProcurementGoodService;
-import com.springapp.service.ProcurementService;
+import com.springapp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by bkv on 17/02/15.
@@ -60,7 +56,7 @@ public class ProcurementController {
     @RequestMapping("/procurement/edit/{procurementId}")
     public String procurementEdit(@PathVariable("procurementId") Integer procurementId, Map<String, Object> map){
         map.put("procurement", procurementService.getProcurementById(procurementId));
-        map.put("companies", companyService.listCompanies());
+        map.put("foreign_companies", companyService.listCompaniesByType(CompanyTypeService.FOREIGN));
         map.put("procurementGoods", procurementGoodService.listProcurementGood(procurementId));
         return "/procurement/edit";
     }
@@ -78,4 +74,17 @@ public class ProcurementController {
 
         return "redirect:/procurement/list";
     }
+
+
+    @RequestMapping(value = "/procurement/ajaxtest", method = RequestMethod.GET)
+    public @ResponseBody
+    String getTime() {
+
+        Random rand = new Random();
+        float r = rand.nextFloat() * 100;
+        String result = "<br>Next Random # is <b>" + r + "</b>. Generated on <b>" + new Date().toString() + "</b>";
+        System.out.println("Debug Message from CrunchifySpringAjaxJQuery Controller.." + new Date().toString());
+        return result;
+    }
+
 }

@@ -1032,13 +1032,22 @@
       <column name="nameRu" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
       <column name="nameFr" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
       <column name="address" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="type" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="fk_type" columns="type" ref-table="CompanyType" ref-schema="" ref-catalog="scmweb_db" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="fk_address" columns="address" ref-table="Address" ref-schema="" ref-catalog="scmweb_db" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="fk_consignorCompany" table="Procurement" schema="" catalog="scmweb_db" columns="consignor"/>
       <exported-key name="fk_sellerCompany" table="Procurement" schema="" catalog="scmweb_db" columns="seller"/>
       <exported-key name="fk_ProcGoodProducer" table="ProcurementGood" schema="" catalog="scmweb_db" columns="producer"/>
       <exported-key name="fk_providerCompany" table="deliveryCharge" schema="" catalog="scmweb_db" columns="providerCompany"/>
       <index name="fk_address_idx" unique="false" columns="address"/>
+      <index name="fk_type_idx" unique="false" columns="type"/>
+    </table>
+    <table name="CompanyType" schema="" catalog="scmweb_db" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="type" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="fk_type" table="Company" schema="" catalog="scmweb_db" columns="type"/>
     </table>
     <table name="Country" schema="" catalog="scmweb_db" type="TABLE">
       <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>

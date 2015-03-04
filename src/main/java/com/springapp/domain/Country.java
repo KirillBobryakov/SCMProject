@@ -71,7 +71,6 @@ public class Country implements Serializable{
     public Collection<Address> getAddressesById() {
         return addressesById;
     }
-
     public void setAddressesById(Collection<Address> addressesById) {
         this.addressesById = addressesById;
     }

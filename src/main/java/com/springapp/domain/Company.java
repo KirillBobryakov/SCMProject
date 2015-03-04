@@ -27,7 +27,6 @@ public class Company implements Serializable{
     public int getId() {
         return id;
     }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -37,7 +36,6 @@ public class Company implements Serializable{
     public String getNameRu() {
         return nameRu;
     }
-
     public void setNameRu(String nameRu) {
         this.nameRu = nameRu;
     }
@@ -47,7 +45,6 @@ public class Company implements Serializable{
     public String getNameFr() {
         return nameFr;
     }
-
     public void setNameFr(String nameFr) {
         this.nameFr = nameFr;
     }
@@ -57,7 +54,6 @@ public class Company implements Serializable{
     public Integer getAddress() {
         return address;
     }
-
     public void setAddress(Integer address) {
         this.address = address;
     }

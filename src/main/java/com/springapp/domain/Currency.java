@@ -15,6 +15,7 @@ public class Currency implements Serializable{
     private String codeAlfa;
     private String name;
     private Collection<ProcurementGood> procurementGoodsById;
+    private Collection<TnvedCode> tnvedCodesById;
 
     @Id
     @Column(name = "id")
@@ -31,6 +32,7 @@ public class Currency implements Serializable{
     public String getCodeNum() {
         return codeNum;
     }
+
     public void setCodeNum(String codeNum) {
         this.codeNum = codeNum;
     }
@@ -40,6 +42,7 @@ public class Currency implements Serializable{
     public String getCodeAlfa() {
         return codeAlfa;
     }
+
     public void setCodeAlfa(String codeAlfa) {
         this.codeAlfa = codeAlfa;
     }
@@ -49,6 +52,7 @@ public class Currency implements Serializable{
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -81,6 +85,7 @@ public class Currency implements Serializable{
     public Collection<ProcurementGood> getProcurementGoodsById() {
         return procurementGoodsById;
     }
+
     public void setProcurementGoodsById(Collection<ProcurementGood> procurementGoodsById) {
         this.procurementGoodsById = procurementGoodsById;
     }
@@ -88,5 +93,13 @@ public class Currency implements Serializable{
     @Override
     public String toString() {
         return codeAlfa;
+    }
+
+    @OneToMany(mappedBy = "currencyByImportDutyWeightCurrency")
+    public Collection<TnvedCode> getTnvedCodesById() {
+        return tnvedCodesById;
+    }
+    public void setTnvedCodesById(Collection<TnvedCode> tnvedCodesById) {
+        this.tnvedCodesById = tnvedCodesById;
     }
 }

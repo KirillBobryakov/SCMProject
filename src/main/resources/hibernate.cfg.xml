@@ -16,6 +16,10 @@
         <mapping class="com.springapp.domain.ProcurementGood"/>
         <mapping class="com.springapp.domain.CompanyType"/>
         <mapping class="com.springapp.domain.Currency"/>
+        <mapping class="com.springapp.domain.TnvedCode"/>
+        <mapping class="com.springapp.domain.PackingInfo"/>
+        <mapping class="com.springapp.domain.UnitQualifier"/>
+        <mapping class="com.springapp.domain.Good"/>
 
         <!--property name="connection.url">jdbc:mysql://localhost:3306/scmweb_db</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>

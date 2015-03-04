@@ -123,7 +123,6 @@ public class Address implements Serializable{
     public Collection<Company> getCompaniesById() {
         return companiesById;
     }
-
     public void setCompaniesById(Collection<Company> companiesById) {
         this.companiesById = companiesById;
     }

@@ -21,20 +21,20 @@
             url : '/procurement/unitPriceCurrency',
             data : {currencyId: currencyId},
             success : function(data) {
-                $('#unitPriceCurrency'+procurementGoodId).val(data);
+                $('#unitPriceCurrency'+procurementGoodId).html(data);
             }
         });
     }
-    function getCurrencyList() {
-        $.ajax({
-            url : '/procurement/getListCurrencies',
-            success : function(data) {
-                $( "input" ).autocomplete({
-                    source: data
-                });
-            }
-        });
-    }
+//    function getCurrencyList() {
+//        $.ajax({
+//            url : '/procurement/getListCurrencies',
+//            success : function(data) {
+//                $( "input" ).autocomplete({
+//                    source: data
+//                });
+//            }
+//        });
+//    }
 
 </script>
 
@@ -115,6 +115,7 @@
 <c:if test="${!empty procurementGoods}">
     <table class="data" border="1">
         <tr>
+            <th>good</th>
             <th>goodQuantity</th>
             <th>unitPrice</th>
             <th>unitPriceCurrency</th>
@@ -123,6 +124,9 @@
         </tr>
         <c:forEach items="${procurementGoods}" var="procurementGood">
             <tr>
+                <td>
+                    ${procurementGood.good}
+                </td>
                 <td>
                     ${procurementGood.goodQuantity}
                 </td>
@@ -133,7 +137,8 @@
                     <script type="application/javascript">
                         $(getCurrencyCodeAlfa(${procurementGood.id}, ${procurementGood.unitPriceCurrency}));
                     </script>
-                    <input id="unitPriceCurrency${procurementGood.id}"/>
+                    <a id="unitPriceCurrency${procurementGood.id}"></a>
+
                 </td>
                 <td>
                     ${procurementGood.discountAbsolute}
@@ -146,14 +151,6 @@
     </table>
 </c:if>
 
-<div id="testDiv">
-
-    <label for="tags">Tags: </label>
-    <input id="tags">
-    <script type="application/javascript">
-        $(getCurrencyList());
-    </script>
-</div>
 
 
 

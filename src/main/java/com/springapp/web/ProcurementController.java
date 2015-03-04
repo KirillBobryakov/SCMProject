@@ -2,14 +2,17 @@ package com.springapp.web;
 
 import com.springapp.domain.Company;
 import com.springapp.domain.Country;
+import com.springapp.domain.Currency;
 import com.springapp.domain.Procurement;
 import com.springapp.service.*;
+import org.aspectj.apache.bcel.generic.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -28,9 +31,13 @@ public class ProcurementController {
     @Autowired
     private ProcurementGoodService procurementGoodService;
 
-
     @Autowired
     private ProcurementService procurementService;
+
+    @Autowired
+    private CurrencyService currencyService;
+
+
 
     @RequestMapping("/procurement")
     public String procurement(Map<String, Object> map){
@@ -58,6 +65,8 @@ public class ProcurementController {
         map.put("procurement", procurementService.getProcurementById(procurementId));
         map.put("foreign_companies", companyService.listCompaniesByType(CompanyTypeService.FOREIGN));
         map.put("procurementGoods", procurementGoodService.listProcurementGood(procurementId));
+        map.put("currencies", currencyService.listCurrencies());
+
         return "/procurement/edit";
     }
 
@@ -76,15 +85,21 @@ public class ProcurementController {
     }
 
 
-    @RequestMapping(value = "/procurement/ajaxtest", method = RequestMethod.GET)
-    public @ResponseBody
-    String getTime() {
-
-        Random rand = new Random();
-        float r = rand.nextFloat() * 100;
-        String result = "<br>Next Random # is <b>" + r + "</b>. Generated on <b>" + new Date().toString() + "</b>";
-        System.out.println("Debug Message from CrunchifySpringAjaxJQuery Controller.." + new Date().toString());
-        return result;
+    @RequestMapping(value = "/procurement/unitPriceCurrency", method = RequestMethod.GET)
+    public @ResponseBody String getUnitPriceCurrency(@RequestParam(value = "currencyId") int currencyId) {
+        return currencyService.getCodeAlfaByCurrencyId(currencyId);
     }
+
+    @RequestMapping(value = "/procurement/getListCurrencies", method = RequestMethod.GET)
+    public @ResponseBody String[] getListCurrencies() {
+        List<Currency> currencies = currencyService.listCurrencies();
+        String[] curs = new String[currencies.size()];
+        for(int i = 0; i < currencies.size(); i++){
+            curs[i] = ((Currency) (currencies.get(i))).getCodeAlfa();
+        }
+        return curs;
+    }
+
+
 
 }

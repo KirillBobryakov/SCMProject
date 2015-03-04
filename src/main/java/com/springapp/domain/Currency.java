@@ -84,4 +84,9 @@ public class Currency implements Serializable{
     public void setProcurementGoodsById(Collection<ProcurementGood> procurementGoodsById) {
         this.procurementGoodsById = procurementGoodsById;
     }
+
+    @Override
+    public String toString() {
+        return codeAlfa;
+    }
 }

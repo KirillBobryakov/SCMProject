@@ -54,7 +54,7 @@ public class ProcurementDAOImpl implements ProcurementDAO {
     @Override
     public Procurement getProcurementById(Integer id){
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "from Procurement procurement where procurement.id = :procurementId");
+                "FROM Procurement procurement WHERE procurement.id = :procurementId");
         query.setParameter("procurementId", id);
 //        Procurement procurement = (Procurement) sessionFactory.getCurrentSession().load(Procurement.class, id);
         return (Procurement) query.list().get(0);

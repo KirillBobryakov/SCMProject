@@ -9,6 +9,34 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>TITLE</title>
 </head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+
+
+<script type="text/javascript">
+    function getCurrencyCodeAlfa(procurementGoodId,currencyId) {
+        var l;
+        $.ajax({
+            url : '/procurement/unitPriceCurrency',
+            data : {currencyId: currencyId},
+            success : function(data) {
+                $('#unitPriceCurrency'+procurementGoodId).val(data);
+            }
+        });
+    }
+    function getCurrencyList() {
+        $.ajax({
+            url : '/procurement/getListCurrencies',
+            success : function(data) {
+                $( "input" ).autocomplete({
+                    source: data
+                });
+            }
+        });
+    }
+
+</script>
 
 <body>
 
@@ -89,33 +117,43 @@
         <tr>
             <th>goodQuantity</th>
             <th>unitPrice</th>
+            <th>unitPriceCurrency</th>
             <th>discountAbsolute</th>
             <th>discountPercent</th>
         </tr>
-        <c:forEach items="${procurementGoods}" var="procurementGoods">
+        <c:forEach items="${procurementGoods}" var="procurementGood">
             <tr>
                 <td>
-                    ${procurementGoods.goodQuantity}
+                    ${procurementGood.goodQuantity}
                 </td>
                 <td>
-                    ${procurementGoods.unitPrice}
+                    ${procurementGood.unitPrice}
                 </td>
                 <td>
-                    ${procurementGoods.discountAbsolute}
+                    <script type="application/javascript">
+                        $(getCurrencyCodeAlfa(${procurementGood.id}, ${procurementGood.unitPriceCurrency}));
+                    </script>
+                    <input id="unitPriceCurrency${procurementGood.id}"/>
                 </td>
                 <td>
-                    ${procurementGoods.discountPercent}
+                    ${procurementGood.discountAbsolute}
+                </td>
+                <td>
+                    ${procurementGood.discountPercent}
                 </td>
             </tr>
         </c:forEach>
     </table>
 </c:if>
 
+<div id="testDiv">
 
-
-
-
-
+    <label for="tags">Tags: </label>
+    <input id="tags">
+    <script type="application/javascript">
+        $(getCurrencyList());
+    </script>
+</div>
 
 
 

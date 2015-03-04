@@ -44,6 +44,8 @@
           <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.6.5" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.6.5" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:3.0.1.RELEASE" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-mapper-asl:1.9.10" />
+          <element id="library" level="project" name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.10" />
         </element>
       </element>
     </root>
